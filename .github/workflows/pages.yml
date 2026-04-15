@@ -2,12 +2,9 @@
 name: Deploy static content to Pages
 
 on:
-  # Runs after E2E tests complete successfully
-  workflow_run:
-    workflows: ["E2E Tests"]
-    types:
-      - completed
+  push:
     branches: ["main", "master"]
+  workflow_dispatch: # Esto te permite ejecutarlo manualmente con un botón
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -27,7 +24,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -40,7 +37,7 @@ jobs:
         env:
           # do not report warnings as errors
           CI: false
-          PUBLIC_URL: /FossFLOW/
+          PUBLIC_URL: /architectural-trends/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
