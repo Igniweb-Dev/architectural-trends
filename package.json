@@ -1,4 +1,6 @@
 {
+  "homepage": "https://daruinherreralgniweb.github.io/architectural-trends/",
+  "name": "fossflow",
   "name": "fossflow-monorepo",
   "version": "1.10.8",
   "private": true,
